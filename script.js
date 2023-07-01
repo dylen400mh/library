@@ -8,15 +8,23 @@ function Book(title, author, pages, read) {
     this.read = read;
     this.info = () => {
         string = `${this.title} by ${this.author}, ${pages} pages, `
-        if (read) {
+        if (read.toUpperCase() === "Y") {
             return string + "already read."
         }
         return string + "not read yet."
     }
 }
 
+// ADD BOOK
+function addBookToLibrary(title, author, pages, read) {
 
-
-function addBookToLibrary() {
-
+    myLibrary.push(new Book(title, author, pages, read));
 }
+
+// let title = prompt("Book Title: ");
+// let author = prompt("Book Author: ");
+// let pages = Number(prompt("Pages:"));
+// let read = prompt("Read (Y/N):");
+
+// addBookToLibrary(title, author, pages, read);
+
