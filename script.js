@@ -1,26 +1,38 @@
 let myLibrary = [];
 
 // CONSTRUCTOR
-function Book(title, author, pages, read) {
+function Book(title, author, pages, readStatus) {
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.read = read;
+    this.readStatus = readStatus;
 }
 
 // ADD BOOK
-function addBookToLibrary(title, author, pages, read) {
+function addBookToLibrary(title, author, pages, readStatus) {
 
-    myLibrary.push(new Book(title, author, pages, read));
+    myLibrary.push(new Book(title, author, pages, readStatus));
 }
 
 // REMOVE BOOK
 
 function removeBook() {
 
-    const bookToRemove = this.parentNode;
+    const bookIndex = this.parentNode.index;
 
-    myLibrary.splice(bookToRemove.index, 1);
+    myLibrary.splice(bookIndex, 1);
+
+    displayBooks();
+}
+
+// TOGGLE READ STATUS
+
+function toggleReadStatus() {
+    const bookIndex = this.parentNode.getAttribute("index");
+    const book = myLibrary[bookIndex];
+
+    // toggles book read status
+    book.readStatus = (book.readStatus === "Read") ? "Not Read" : "Read";
 
     displayBooks();
 }
@@ -61,7 +73,8 @@ function displayBooks() {
 
         const readButton = document.createElement("button");
         readButton.classList.add("read-button");
-        readButton.textContent = "Read";
+        readButton.textContent = book.readStatus;
+        readButton.addEventListener("click", toggleReadStatus);
 
         const removeButton = document.createElement("button");
         removeButton.classList.add("remove-button");
@@ -116,7 +129,10 @@ function submitForm(event) {
     let pages = document.getElementById("pages").value;
     let read = document.getElementById("read").checked;
 
-    addBookToLibrary(title, author, pages, read);
+    // set read status
+    readStatus = read ? "Read" : "Not Read";
+
+    addBookToLibrary(title, author, pages, readStatus);
     closeForm();
 
     displayBooks();
