@@ -14,6 +14,12 @@ function addBookToLibrary(title, author, pages, readStatus) {
     myLibrary.push(new Book(title, author, pages, readStatus));
 }
 
+// clears display and re-displays updated information
+function refreshPage() {
+    clearBooks();
+    displayBooks();
+}
+
 // REMOVE BOOK
 
 function removeBook() {
@@ -22,7 +28,7 @@ function removeBook() {
 
     myLibrary.splice(bookIndex, 1);
 
-    displayBooks();
+    refreshPage();
 }
 
 // TOGGLE READ STATUS
@@ -34,7 +40,7 @@ function toggleReadStatus() {
     // toggles book read status
     book.readStatus = (book.readStatus === "Read") ? "Not Read" : "Read";
 
-    displayBooks();
+    refreshPage();
 }
 
 
@@ -47,9 +53,6 @@ function clearBooks() {
 
 // Display books in library
 function displayBooks() {
-
-    // remove existing books (refreshing)
-    clearBooks();
 
     for (let i = 0; i < myLibrary.length; i++) {
 
@@ -135,7 +138,7 @@ function submitForm(event) {
     addBookToLibrary(title, author, pages, readStatus);
     closeForm();
 
-    displayBooks();
+    refreshPage();
 }
 
 const container = document.querySelector(".container");
