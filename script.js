@@ -22,20 +22,16 @@ function refreshPage() {
 
 // REMOVE BOOK
 
-function removeBook() {
-
-    const bookIndex = this.parentNode.index;
-
-    myLibrary.splice(bookIndex, 1);
+function removeBook(index) {
+    myLibrary.splice(index, 1);
 
     refreshPage();
 }
 
 // TOGGLE READ STATUS
 
-function toggleReadStatus() {
-    const bookIndex = this.parentNode.getAttribute("index");
-    const book = myLibrary[bookIndex];
+function toggleReadStatus(index) {
+    const book = myLibrary[index];
 
     // toggles book read status
     book.readStatus = (book.readStatus === "Read") ? "Not Read" : "Read";
@@ -77,12 +73,10 @@ function displayBooks() {
         const readButton = document.createElement("button");
         readButton.classList.add("read-button");
         readButton.textContent = book.readStatus;
-        readButton.addEventListener("click", toggleReadStatus);
 
         const removeButton = document.createElement("button");
         removeButton.classList.add("remove-button");
         removeButton.textContent = "Remove";
-        removeButton.addEventListener("click", removeBook);
 
 
         // Append book properties to card
@@ -143,6 +137,17 @@ function submitForm(event) {
 
 const container = document.querySelector(".container");
 const card = document.querySelector(".card");
+
+container.addEventListener("click", (e) => {
+    const target = e.target;
+    const index = target.parentNode.getAttribute("index")
+
+    if (target.classList.contains("read-button")) {
+        toggleReadStatus(index);
+    } else if (target.classList.contains("remove-button")) {
+        removeBook(index);
+    }
+})
 
 displayBooks();
 
