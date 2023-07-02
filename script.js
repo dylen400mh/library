@@ -15,7 +15,7 @@ function addBookToLibrary(title, author, pages, read) {
 }
 
 // REMOVE EXISTING CARDS
-function removeBooks() {
+function clearBooks() {
     while (container.firstChild) {
         container.removeChild(container.firstChild);
     }
@@ -26,7 +26,7 @@ function removeBooks() {
 function displayBooks() {
 
     // remove existing books (refreshing)
-    removeBooks();
+    clearBooks();
 
     for (let i = 0; i < myLibrary.length; i++) {
 
