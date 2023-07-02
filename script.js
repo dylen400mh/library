@@ -84,6 +84,13 @@ function displayBooks() {
     }
 }
 
+// OPEN POPUP FORM
+
+function openForm() {
+    document.querySelector(".add-book-button").style.display = "none";
+    document.querySelector(".form-popup").style.display = "inline";
+}
+
 const container = document.querySelector(".container");
 const card = document.querySelector(".card");
 

@@ -21,6 +21,9 @@ body {
     background: rgb(240, 240, 240);
     box-shadow: inset 0 5px 5px #e2e8f0;
     grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    padding-top: 2rem;
 }
 
 .container {
@@ -42,6 +45,45 @@ body {
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
-.card h3 {
+h3 {
     margin: 0;
+}
+
+.add-book-button {
+    align-self: center;
+    border: 0;
+    border-radius: 10px;
+}
+
+.add-book-button:hover {
+    background: lightgray;
+}
+
+.form-popup {
+    display: flex;
+    display: none;
+    align-self: center;
+}
+
+.form-container {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    align-items: center;
+    max-width: 300px;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.form-container h2 {
+    margin: 0;
+}
+
+.read {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
 }
