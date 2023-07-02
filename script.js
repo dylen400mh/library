@@ -80,6 +80,8 @@ function openForm() {
 function closeForm() {
     document.querySelector(".add-book-button").style.display = "block";
     document.querySelector(".form-popup").style.display = "none";
+
+    resetFormValues();
 }
 
 // reset form values
@@ -103,11 +105,9 @@ function submitForm(event) {
 
     addBookToLibrary(title, author, pages, read);
     closeForm();
-    resetFormValues();
 
     displayBooks();
 }
-
 
 const container = document.querySelector(".container");
 const card = document.querySelector(".card");
