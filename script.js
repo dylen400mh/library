@@ -14,13 +14,13 @@ function addBookToLibrary(title, author, pages, read) {
     myLibrary.push(new Book(title, author, pages, read));
 }
 
+
 // REMOVE EXISTING CARDS
 function clearBooks() {
     while (container.firstChild) {
         container.removeChild(container.firstChild);
     }
 }
-
 
 // Display books in library
 function displayBooks() {
@@ -48,11 +48,9 @@ function displayBooks() {
         pages.textContent = book.pages + " pages";
 
         const readButton = document.createElement("button");
-        readButton.classList.add("h3");
         readButton.textContent = "Read";
 
         const removeButton = document.createElement("button");
-        removeButton.classList.add("h3");
         removeButton.textContent = "Remove";
 
 
