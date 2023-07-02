@@ -76,16 +76,18 @@ function openForm() {
     document.querySelector(".form-popup").style.display = "inline";
 }
 
+function submitForm() {
+    let title = document.getElementById("title").value;
+    let author = document.getElementById("author").value;
+    let pages = document.getElementById("pages").value;
+    let read = document.getElementById("read").value;
+
+    addBookToLibrary(title, author, pages, read);
+}
+
 
 const container = document.querySelector(".container");
 const card = document.querySelector(".card");
-
-let title = document.getElementById("title").value;
-let author = document.getElementById("author").value;
-let pages = document.getElementById("pages").value;
-let read = document.getElementById("read").value;
-
-addBookToLibrary(title, author, pages, read);
 
 
 // displayBooks();
