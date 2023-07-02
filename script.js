@@ -14,6 +14,17 @@ function addBookToLibrary(title, author, pages, read) {
     myLibrary.push(new Book(title, author, pages, read));
 }
 
+// REMOVE BOOK
+
+function removeBook() {
+
+    const bookToRemove = this.parentNode;
+
+    myLibrary.splice(bookToRemove.index, 1);
+
+    displayBooks();
+}
+
 
 // REMOVE EXISTING CARDS
 function clearBooks() {
@@ -49,10 +60,13 @@ function displayBooks() {
         pages.textContent = book.pages + " pages";
 
         const readButton = document.createElement("button");
+        readButton.classList.add("read-button");
         readButton.textContent = "Read";
 
         const removeButton = document.createElement("button");
+        removeButton.classList.add("remove-button");
         removeButton.textContent = "Remove";
+        removeButton.addEventListener("click", removeBook);
 
 
         // Append book properties to card
@@ -110,7 +124,6 @@ function submitForm(event) {
 
 const container = document.querySelector(".container");
 const card = document.querySelector(".card");
-
 
 displayBooks();
 
