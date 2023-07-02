@@ -33,6 +33,7 @@ function displayBooks() {
         const book = myLibrary[i];
 
         const card = document.createElement("div");
+        card.setAttribute("index", i) // used to access a specific card when removing it from the list
         card.classList.add("card");
 
         const title = document.createElement("h3");
