@@ -21,15 +21,7 @@ function addBookToLibrary(title, author, pages, read) {
     myLibrary.push(new Book(title, author, pages, read));
 }
 
-// let title = prompt("Book Title: ");
-// let author = prompt("Book Author: ");
-// let pages = Number(prompt("Pages:"));
-// let read = prompt("Read (Y/N):");
-
-// addBookToLibrary(title, author, pages, read);
-
-
-// remove existing cards
+// REMOVE EXISTING CARDS
 function removeBooks() {
     while (container.firstChild) {
         container.removeChild(container.firstChild);
@@ -91,8 +83,16 @@ function openForm() {
     document.querySelector(".form-popup").style.display = "inline";
 }
 
+
 const container = document.querySelector(".container");
 const card = document.querySelector(".card");
+
+let title = document.getElementById("title").value;
+let author = document.getElementById("author").value;
+let pages = document.getElementById("pages").value;
+let read = document.getElementById("read").value;
+
+addBookToLibrary(title, author, pages, read);
 
 
 // displayBooks();
