@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 let myLibrary = [];
 
 // CONSTRUCTOR
