@@ -1,4 +1,20 @@
+const container = document.querySelector(".container");
+const card = document.querySelector(".card");
+const form = document.querySelector(".form-container");
+const submitButton = document.querySelector(".submit");
+
+// form elements
+let title = document.getElementById("title");
+let author = document.getElementById("author");
+let pages = document.getElementById("pages");
+let read = document.getElementById("read");
+
+let inputBoxes = document.querySelectorAll("input");
+console.log(inputBoxes)
+
+
 let myLibrary = [];
+
 
 // CONSTRUCTOR
 class Book {
@@ -98,6 +114,10 @@ function openForm() {
     document.querySelector(".form-popup").style.display = "flex";
 }
 
+function validateForm() {
+
+}
+
 // CLOSE POPUP FORM
 function closeForm() {
     document.querySelector(".add-book-button").style.display = "block";
@@ -114,39 +134,71 @@ function resetFormValues() {
     document.getElementById("read").checked = false;
 }
 
-
 // submit form, retrieve values, and add book to library
-function submitForm(event) {
+function submitForm() {
 
-    event.preventDefault();
+    inputBoxes.forEach(box => {
+        if (box.type !== "checkbox") {
+            if (box.validity.valueMissing) {
+                // show error message
+                showError(box.id)
 
-    let title = document.getElementById("title").value;
-    let author = document.getElementById("author").value;
-    let pages = document.getElementById("pages").value;
-    let read = document.getElementById("read").checked;
+            } else {
+                // hide error message
+                hideError(box.id)
+            }
+        }
+    })
 
-    // set read status
-    readStatus = read ? "Read" : "Not Read";
+    // check if form is valid and perform appropriate action
+    if (form.checkValidity()) {
+        // set read status
+        readStatus = read.checked ? "Read" : "Not Read";
 
-    addBookToLibrary(title, author, pages, readStatus);
-    closeForm();
+        addBookToLibrary(title.value, author.value, pages.value, readStatus);
+        closeForm();
 
-    displayBooks();
+        displayBooks();
+    } else {
+        // make styling changes or whatever I want here...
+    }
 }
 
-const container = document.querySelector(".container");
-const card = document.querySelector(".card");
+function showError(inputId) {
+    const errorText = document.getElementById(`${inputId}-error`);
+    errorText.style.display = "block";
+}
+
+function hideError(inputId) {
+    const errorText = document.getElementById(`${inputId}-error`);
+    errorText.style.display = "none";
+}
 
 container.addEventListener("click", (e) => {
-    const target = e.target;
-    const index = target.parentNode.getAttribute("index")
-
-    if (target.classList.contains("read-button")) {
+    const index = e.target.parentNode.getAttribute("index")
+    if (e.target.classList.contains("read-button")) {
         toggleReadStatus(index);
     } else if (target.classList.contains("remove-button")) {
         removeBook(index);
     }
 })
+
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    submitForm();
+});
+
+
+submitButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    submitForm();
+})
+
+
+
+
+
+
 
 displayBooks();
 
